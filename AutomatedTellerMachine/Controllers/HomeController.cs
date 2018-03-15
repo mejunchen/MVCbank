@@ -9,7 +9,7 @@ using Microsoft.AspNet.Identity.Owin;
 
 namespace AutomatedTellerMachine.Controllers
 {
-    [RequireHttps]
+    //[RequireHttps]
     public class HomeController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
