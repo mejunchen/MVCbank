@@ -418,7 +418,7 @@ namespace AutomatedTellerMachine.Controllers
                     if (result.Succeeded)
                     {
                         var service = new CheckingAccountService(HttpContext.GetOwinContext().Get<ApplicationDbContext>());
-                        service.CreateCheckingAccount("Facebook", user.UserName, user.Id, 500);
+                        service.CreateCheckingAccount("Facebook", user.UserName, user.Id, 0);
                         await SignInAsync(user, isPersistent: false);
                         
                         // For more information on how to enable account confirmation and password reset please visit http://go.microsoft.com/fwlink/?LinkID=320771
