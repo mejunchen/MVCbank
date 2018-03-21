@@ -19,3 +19,13 @@ textarea {
 .margin-top-20 {
     margin-top: 20px;
 }
+
+/* styles for validation helpers*/
+.field-validation-error {
+    color: #ff0000;
+    font-weight: bold;
+}
+
+input.input-validation-error {
+    border: 1px solid #ff0000;
+}
