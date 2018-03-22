@@ -197,6 +197,25 @@ namespace AutomatedTellerMachine.Controllers
             return View();
         }
 
+    [AllowAnonymous]
+    [HttpPost]
+    public ActionResult CheckExistingEmail(string Email)
+    {
+        try
+        {
+            return Json(!IsEmailExists(Email));
+        }
+        catch (Exception ex)
+        {
+            return Json(false);
+        }
+    }
+
+    private bool IsEmailExists(string email)
+    {
+        return UserManager.FindByEmail(email) != null;
+    }
+
         //
         // POST: /Account/ResetPassword
         [HttpPost]

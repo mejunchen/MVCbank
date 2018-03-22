@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.Web.Mvc;
 
 namespace AutomatedTellerMachine.Models
 {
@@ -35,7 +36,7 @@ namespace AutomatedTellerMachine.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm new password")]
-        [Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
+        [System.ComponentModel.DataAnnotations.Compare("NewPassword", ErrorMessage = "The new password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
     }
 
@@ -59,6 +60,7 @@ namespace AutomatedTellerMachine.Models
     {
         [Required]
         [EmailAddress]
+        [Remote("CheckExistingEmail", "Account", HttpMethod = "POST", ErrorMessage = "Email Address in already in use!")]
         [Display(Name = "Email")]
         public string Email { get; set; }
 
@@ -72,13 +74,14 @@ namespace AutomatedTellerMachine.Models
 
         [Required]
         [StringLength(100, ErrorMessage = "The {0} must be at least {2} characters long.", MinimumLength = 6)]
+        [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&])[A-Za-z\d$@$!%*?&]{6,10}", ErrorMessage = "Password must have at least one non letter or digit character, must have at least one uppercase('A'-'Z'), one lowercase ('a'-'z') and one digit ('1'-'9').")]
         [DataType(DataType.Password)]
         [Display(Name = "Password")]
         public string Password { get; set; }
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
     }
 
@@ -97,7 +100,7 @@ namespace AutomatedTellerMachine.Models
 
         [DataType(DataType.Password)]
         [Display(Name = "Confirm password")]
-        [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
         public string ConfirmPassword { get; set; }
 
         public string Code { get; set; }
